@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLoft - Discover Useful Websites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #ff9e00;
+            --dark: #1e1e2c;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --premium: #ffd700;
+            --vip: #8a2be2;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 2px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #ff7b00);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Category Filter */
+        .category-section {
+            padding: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-title {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #eef2ff;
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Website Grid */
+        .website-grid {
+            padding: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .website-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .website-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .favicon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .website-info {
+            flex-grow: 1;
+        }
+
+        .website-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .website-category {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: #eef2ff;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .website-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            padding: 0 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .website-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .website-link:hover {
+            color: var(--secondary);
+            transform: translateX(3px);
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, var(--premium), #ffbf00);
+            color: #856404;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, var(--vip), #6a0dad);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lock-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lock-icon:hover {
+            transform: scale(1.1);
+            background: var(--warning);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-footer {
+            padding: 15px 25px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Browser Page */
+        .browser-container {
+            display: none;
+            height: calc(100vh - 70px);
+            flex-direction: column;
+        }
+
+        .browser-toolbar {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .browser-url {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        .browser-frame {
+            flex-grow: 1;
+            border: none;
+            background: white;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            padding: 30px 0;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .admin-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .admin-card-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: var(--primary);
+        }
+
+        .admin-list {
+            list-style: none;
+        }
+
+        .admin-list-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-list-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #d11450);
+            color: white;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                max-width: 100%;
+                margin: 10px 0;
+            }
+            
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .website-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .website-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-3 {
+            margin-top: 15px;
+        }
+        
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Search Bar -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-layer-group"></i>
+                    <span>WebLoft</span>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for websites...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="btn btn-warning" id="premiumBtn">
+                        <i class="fas fa-crown"></i> Go Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Filter Section -->
+    <section class="category-section">
+        <div class="container">
+            <h3 class="category-title">Categories</h3>
+            <div class="categories" id="categoriesContainer">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="AI Tools">AI Tools</button>
+                <button class="category-btn" data-category="Productivity">Productivity</button>
+                <button class="category-btn" data-category="Education">Education</button>
+                <button class="category-btn" data-category="Design">Design</button>
+                <button class="category-btn" data-category="Development">Development</button>
+                <button class="category-btn" data-category="Business">Business</button>
+                <button class="category-btn" data-category="Entertainment">Entertainment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Grid -->
+    <main class="container">
+        <div class="website-grid" id="websiteGrid">
+            <!-- Website cards will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <!-- Browser View -->
+    <div class="browser-container" id="browserView">
+        <div class="browser-toolbar">
+            <button class="btn btn-outline" id="backBtn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <input type="text" class="browser-url" id="browserUrl" readonly>
+            <button class="btn btn-outline" id="closeBrowserBtn">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+        <iframe class="browser-frame" id="browserFrame"></iframe>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="container admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2 class="admin-title">Admin Dashboard</h2>
+            <button class="btn btn-danger" id="logoutAdminBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+        
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h3 class="admin-card-title">Pending Websites</h3>
+                <ul class="admin-list" id="pendingWebsites">
+                    <!-- Pending websites will be added here -->
+                </ul>
+            </div>
+            
+            <div class="admin-card">
+                <h3 class="admin-card-title">User Management</h3>
+                <ul class="admin-list" id="userList">
+                    <!-- Users will be added here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Login/Signup -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalAuthTitle">Login to WebLoft</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Your password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="submitLogin">Login</button>
+                        <p class="text-center mt-3">
+                            Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div id="signupForm" style="display: none;">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" class="form-control" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" class="form-control" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" class="form-control" placeholder="Create password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="submitSignup">Create Account</button>
+                        <p class="text-center mt-3">
+                            Already have an account? <a href="#" id="switchToLogin">Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ad Unlock -->
+    <div class="modal" id="adModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Unlock Premium Website</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Watch a short ad to unlock this premium website for 24 hours.</p>
+                <div class="ad-container" style="background: #f0f0f0; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
+                    <h4>Advertisement</h4>
+                    <p>Your ad would play here</p>
+                    <div id="adCountdown" style="font-size: 2rem; font-weight: bold; color: var(--primary);">15</div>
+                </div>
+                <p class="text-center"><small>By watching this ad, you support our platform</small></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelAdBtn">Cancel</button>
+                <button class="btn btn-primary" id="watchAdBtn">Watch Ad</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Go Premium -->
+    <div class="modal" id="premiumModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Upgrade to Premium</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <i class="fas fa-crown" style="font-size: 3rem; color: var(--premium); margin-bottom: 15px;"></i>
+                    <h3>Premium Membership</h3>
+                </div>
+                
+                <ul style="list-style: none; margin-bottom: 25px;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        Access all premium websites
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        Ad-free browsing experience
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        Early access to new features
+                    </li>
+                    <li style="padding: 8px 0;">
+                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
+                        Priority support
+                    </li>
+                </ul>
+                
+                <div style="display: flex; justify-content: center; margin: 20px 0;">
+                    <div style="background: #eef2ff; border-radius: 8px; padding: 15px; display: inline-block;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="font-size: 1.5rem; color: var(--premium);">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <div>
+                                <h4>Scan to Upgrade</h4>
+                                <p style="font-size: 0.9rem;">Use your mobile wallet to scan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-center">Scan QR code with your mobile wallet to complete payment</p>
+                <p class="text-center" style="font-size: 0.9rem; color: var(--gray);">Or contact support for manual upgrade</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data - In a real app, this would come from a backend API
+        const websites = [
+            {
+                id: 1,
+                title: "Google Docs",
+                description: "Create and edit documents online with Google Docs. Free web-based word processor.",
+                url: "https://docs.google.com",
+                category: "Productivity",
+                favicon: "file-alt",
+                isPremium: false
+            },
+            {
+                id: 2,
+                title: "Canva",
+                description: "Design anything. Publish anywhere. Use Canva's drag-and-drop tool and layouts.",
+                url: "https://canva.com",
+                category: "Design",
+                favicon: "paint-brush",
+                isPremium: false
+            },
+            {
+                id: 3,
+                title: "Grammarly",
+                description: "Free writing app to make your online writing clear and effective.",
+                url: "https://grammarly.com",
+                category: "Productivity",
+                favicon: "keyboard",
+                isPremium: true
+            },
+            {
+                id: 4,
+                title: "Khan Academy",
+                description: "Free online courses, lessons and practice for students and teachers.",
+                url: "https://khanacademy.org",
+                category: "Education",
+                favicon: "graduation-cap",
+                isPremium: false
+            },
+            {
+                id: 5,
+                title: "Midjourney",
+                description: "AI-powered image generation tool for creating stunning visuals from text prompts.",
+                url: "https://midjourney.com",
+                category: "AI Tools",
+                favicon: "robot",
+                isPremium: true,
+                isVIP: true
+            },
+            {
+                id: 6,
+                title: "Notion",
+                description: "All-in-one workspace for notes, tasks, wikis, and databases.",
+                url: "https://notion.so",
+                category: "Productivity",
+                favicon: "sticky-note",
+                isPremium: true
+            },
+            {
+                id: 7,
+                title: "Figma",
+                description: "Collaborative interface design tool for teams to create, test, and ship better designs.",
+                url: "https://figma.com",
+                category: "Design",
+                favicon: "vector-square",
+                isPremium: false
+            },
+            {
+                id: 8,
+                title: "GitHub",
+                description: "Platform for version control and collaboration for software developers.",
+                url: "https://github.com",
+                category: "Development",
+                favicon: "code",
+                isPremium: false
+            },
+            {
+                id: 9,
+                title: "ChatGPT",
+                description: "Advanced AI language model that can understand and generate human-like text.",
+                url: "https://chat.openai.com",
+                category: "AI Tools",
+                favicon: "comment-alt",
+                isPremium: true
+            },
+            {
+                id: 10,
+                title: "Duolingo",
+                description: "Learn a language for free. Forever. Fun, effective, and 100% free language learning.",
+                url: "https://duolingo.com",
+                category: "Education",
+                favicon: "language",
+                isPremium: false
+            },
+            {
+                id: 11,
+                title: "Trello",
+                description: "Trello helps teams move work forward. Collaborate, manage projects, and reach new productivity peaks.",
+                url: "https://trello.com",
+                category: "Productivity",
+                favicon: "tasks",
+                isPremium: false
+            },
+            {
+                id: 12,
+                title: "Adobe Creative Cloud",
+                description: "Creative Cloud gives you the world's best creative apps and services so you can make anything you imagine.",
+                url: "https://adobe.com/creativecloud",
+                category: "Design",
+                favicon: "palette",
+                isPremium: true
+            }
+        ];
+
+        // Current user state
+        let currentUser = {
+            isLoggedIn: false,
+            role: "free", // free, premium, vip, admin
+            bookmarks: []
+        };
+
+        // DOM Elements
+        const websiteGrid = document.getElementById('websiteGrid');
+        const authModal = document.getElementById('authModal');
+        const adModal = document.getElementById('adModal');
+        const premiumModal = document.getElementById('premiumModal');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const browserView = document.getElementById('browserView');
+        const browserFrame = document.getElementById('browserFrame');
+        const browserUrl = document.getElementById('browserUrl');
+        const adminPanel = document.getElementById('adminPanel');
+        const searchInput = document.getElementById('searchInput');
+        const categoriesContainer = document.getElementById('categoriesContainer');
+
+        // Initialize the app
+        function initApp() {
+            renderWebsiteCards(websites);
+            setupEventListeners();
+        }
+
+        // Render website cards based on user role
+        function renderWebsiteCards(websitesToRender) {
+            websiteGrid.innerHTML = '';
+            
+            websitesToRender.forEach(website => {
+                // Hide VIP websites from non-VIP users
+                if (website.isVIP && currentUser.role !== 'vip' && currentUser.role !== 'admin') {
+                    return;
+                }
+                
+                const card = document.createElement('div');
+                card.className = 'website-card fade-in';
+                
+                let premiumBadge = '';
+                let vipBadge = '';
+                let lockIcon = '';
+                
+                if (website.isPremium && currentUser.role === 'free') {
+                    lockIcon = `<div class="lock-icon" data-id="${website.id}">
+                        <i class="fas fa-lock"></i>
+                    </div>`;
+                }
+                
+                if (website.isPremium && currentUser.role !== 'free') {
+                    premiumBadge = '<div class="premium-badge"><i class="fas fa-crown"></i> Premium</div>';
+                }
+                
+                if (website.isVIP) {
+                    vipBadge = '<div class="vip-badge"><i class="fas fa-star"></i> VIP</div>';
+                }
+                
+                card.innerHTML = `
+                    ${lockIcon}
+                    <div class="card-header">
+                        <div class="favicon">
+                            <i class="fas fa-${website.favicon}"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4 class="website-title">${website.title}</h4>
+                            <span class="website-category">${website.category}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="website-description">${website.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="website-link" data-id="${website.id}" data-url="${website.url}">
+                            <i class="fas fa-external-link-alt"></i> Visit Website
+                        </a>
+                        ${premiumBadge}
+                        ${vipBadge}
+                    </div>
+                `;
+                
+                websiteGrid.appendChild(card);
+            });
+        }
+
+        // Filter websites by search term
+        function filterWebsites(searchTerm) {
+            if (!searchTerm) return websites;
+            
+            const term = searchTerm.toLowerCase();
+            return websites.filter(website => 
+                website.title.toLowerCase().includes(term) || 
+                website.description.toLowerCase().includes(term) ||
+                website.category.toLowerCase().includes(term)
+            );
+        }
+
+        // Filter websites by category
+        function filterByCategory(category) {
+            if (category === 'all') return websites;
+            return websites.filter(website => website.category === category);
+        }
+
+        // Setup all event listeners
+        function setupEventListeners() {
+            // Auth buttons
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                showModal(authModal);
+                document.getElementById('modalAuthTitle').textContent = 'Login to WebLoft';
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            });
+            
+            document.getElementById('premiumBtn').addEventListener('click', () => {
+                if (currentUser.isLoggedIn) {
+                    showModal(premiumModal);
+                } else {
+                    showModal(authModal);
+                }
+            });
+            
+            // Modal controls
+            document.querySelectorAll('.close-modal').forEach(button => {
+                button.addEventListener('click', () => {
+                    hideAllModals();
+                });
+            });
+            
+            // Auth form switching
+            document.getElementById('switchToSignup').addEventListener('click', (e) => {
+                e.preventDefault();
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                document.getElementById('modalAuthTitle').textContent = 'Create an Account';
+            });
+            
+            document.getElementById('switchToLogin').addEventListener('click', (e) => {
+                e.preventDefault();
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                document.getElementById('modalAuthTitle').textContent = 'Login to WebLoft';
+            });
+            
+            // Website links
+            websiteGrid.addEventListener('click', (e) => {
+                const link = e.target.closest('.website-link');
+                if (link) {
+                    e.preventDefault();
+                    const websiteId = parseInt(link.dataset.id);
+                    const url = link.dataset.url;
+                    openWebsite(url, websiteId);
+                }
+                
+                const lockIcon = e.target.closest('.lock-icon');
+                if (lockIcon) {
+                    e.preventDefault();
+                    const websiteId = parseInt(lockIcon.dataset.id);
+                    if (currentUser.isLoggedIn && currentUser.role === 'free') {
+                        showModal(adModal);
+                    } else if (!currentUser.isLoggedIn) {
+                        showModal(authModal);
+                    }
+                }
+            });
+            
+            // Browser controls
+            document.getElementById('closeBrowserBtn').addEventListener('click', () => {
+                browserView.style.display = 'none';
+            });
+            
+            document.getElementById('backBtn').addEventListener('click', () => {
+                browserFrame.contentWindow.history.back();
+            });
+            
+            // Ad modal
+            document.getElementById('watchAdBtn').addEventListener('click', () => {
+                simulateAd();
+            });
+            
+            document.getElementById('cancelAdBtn').addEventListener('click', () => {
+                hideAllModals();
+            });
+            
+            // Admin logout
+            document.getElementById('logoutAdminBtn')?.addEventListener('click', () => {
+                currentUser = {
+                    isLoggedIn: false,
+                    role: "free",
+                    bookmarks: []
+                };
+                adminPanel.style.display = 'none';
+                renderWebsiteCards(websites);
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm.length > 0) {
+                    const filteredWebsites = filterWebsites(searchTerm);
+                    renderWebsiteCards(filteredWebsites);
+                } else {
+                    renderWebsiteCards(websites);
+                }
+            });
+            
+            // Category filter
+            categoriesContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('category-btn')) {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    e.target.classList.add('active');
+                    
+                    // Get category
+                    const category = e.target.dataset.category;
+                    const filteredWebsites = filterByCategory(category);
+                    renderWebsiteCards(filteredWebsites);
+                }
+            });
+            
+            // Login form submission
+            document.getElementById('submitLogin').addEventListener('click', () => {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (email && password) {
+                    // Simulate login
+                    currentUser = {
+                        isLoggedIn: true,
+                        role: "premium", // For demo purposes
+                        bookmarks: []
+                    };
+                    
+                    hideAllModals();
+                    alert('Login successful! You now have premium access.');
+                    renderWebsiteCards(websites);
+                } else {
+                    alert('Please enter both email and password');
+                }
+            });
+            
+            // Signup form submission
+            document.getElementById('submitSignup').addEventListener('click', () => {
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                
+                if (name && email && password) {
+                    // Simulate signup
+                    currentUser = {
+                        isLoggedIn: true,
+                        role: "free", // New users start as free
+                        bookmarks: []
+                    };
+                    
+                    hideAllModals();
+                    alert('Account created successfully! Welcome to WebLoft.');
+                    renderWebsiteCards(websites);
+                } else {
+                    alert('Please fill all fields');
+                }
+            });
+        }
+
+        // Show modal
+        function showModal(modal) {
+            hideAllModals();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide all modals
+        function hideAllModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open website in browser view
+        function openWebsite(url, websiteId) {
+            const website = websites.find(w => w.id === websiteId);
+            
+            // Check if premium and user doesn't have access
+            if (website.isPremium && currentUser.role === 'free') {
+                showModal(adModal);
+                return;
+            }
+            
+            browserUrl.value = url;
+            browserFrame.src = url;
+            browserView.style.display = 'flex';
+        }
+
+        // Simulate watching an ad
+        function simulateAd() {
+            const countdownEl = document.getElementById('adCountdown');
+            let seconds = 15;
+            
+            countdownEl.textContent = seconds;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    hideAllModals();
+                    alert('Website unlocked! You now have 24-hour access to this premium content.');
+                    
+                    // In a real app, this would unlock the website for the user
+                }
+            }, 1000);
+        }
+
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
