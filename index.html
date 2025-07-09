@@ -3,56 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebLoft - Discover Useful Websites</title>
+    <title>WebLoft - Modern Website Discovery Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4361ee;
-            --secondary: #3f37c9;
+            --primary-dark: #3f37c9;
             --accent: #4895ef;
             --success: #4cc9f0;
             --danger: #f72585;
             --warning: #ff9e00;
             --dark: #1e1e2c;
+            --darker: #121220;
             --light: #f8f9fa;
             --gray: #6c757d;
-            --premium: #ffd700;
-            --vip: #8a2be2;
-            --card-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --premium: linear-gradient(135deg, #ffd700, #ffbf00);
+            --vip: linear-gradient(135deg, #8a2be2, #6a0dad);
+            --card-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
-            color: var(--dark);
-            line-height: 1.6;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: rgba(16, 14, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(72, 149, 239, 0.15);
         }
 
         .header-content {
@@ -64,76 +67,112 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
+            gap: 12px;
+            font-size: 1.9rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, #4cc9f0, #4895ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
 
         .logo i {
-            color: var(--success);
-            animation: pulse 2s infinite;
+            background: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(67, 97, 238, 0.5);
+            animation: pulse 3s infinite;
         }
 
         .search-bar {
             flex-grow: 1;
-            max-width: 500px;
-            margin: 0 20px;
+            max-width: 600px;
+            margin: 0 25px;
             position: relative;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 12px 20px;
-            border-radius: 30px;
+            padding: 14px 25px;
+            border-radius: 50px;
             border: none;
             font-size: 1rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
             transition: var(--transition);
+            border: 1px solid rgba(72, 149, 239, 0.2);
         }
 
         .search-bar input:focus {
             outline: none;
-            box-shadow: 0 2px 15px rgba(67, 97, 238, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.3);
+            border-color: var(--accent);
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .search-bar i {
             position: absolute;
-            right: 15px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--gray);
+            color: var(--accent);
         }
 
         .auth-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn {
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 12px 28px;
+            border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             border: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid white;
-            color: white;
+            border: 2px solid var(--accent);
+            color: var(--accent);
         }
 
         .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(72, 149, 239, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(72, 149, 239, 0.3);
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
             color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 25px rgba(67, 97, 238, 0.5);
         }
 
         .btn-warning {
@@ -141,89 +180,129 @@
             color: white;
         }
 
-        .btn:hover {
+        .btn-warning:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 7px 25px rgba(255, 158, 0, 0.4);
         }
 
         /* Category Filter */
         .category-section {
-            padding: 20px 0;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px 0;
         }
 
-        .category-title {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--dark);
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-title i {
+            background: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 0 25px rgba(67, 97, 238, 0.4);
         }
 
         .categories {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .category-btn {
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: #eef2ff;
-            color: var(--primary);
-            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(72, 149, 239, 0.2);
             cursor: pointer;
             font-weight: 500;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .category-btn i {
+            font-size: 1.1rem;
         }
 
         .category-btn.active, .category-btn:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+            border-color: transparent;
         }
 
         /* Website Grid */
         .website-grid {
-            padding: 30px 0;
+            padding: 30px 0 60px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
         }
 
         .website-card {
-            background: white;
-            border-radius: 12px;
+            background: rgba(25, 22, 61, 0.7);
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(72, 149, 239, 0.15);
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
         }
 
         .website-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(72, 149, 239, 0.4);
         }
 
         .card-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
+            padding: 25px 25px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .favicon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-            border-radius: 10px;
+        .card-header:hover {
+            background: rgba(72, 149, 239, 0.05);
+        }
+
+        .website-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #19163d, #25214e);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: var(--primary);
+            font-size: 1.8rem;
+            color: var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .card-header:hover .website-logo {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(72, 149, 239, 0.3);
         }
 
         .website-info {
@@ -232,334 +311,213 @@
 
         .website-title {
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .card-header:hover .website-title {
+            color: var(--accent);
         }
 
         .website-category {
             display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            background: #eef2ff;
-            color: var(--primary);
-            font-size: 0.8rem;
+            padding: 5px 14px;
+            border-radius: 30px;
+            background: rgba(72, 149, 239, 0.15);
+            color: var(--accent);
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
         .card-body {
-            padding: 20px;
+            padding: 0 25px 25px;
         }
 
         .website-description {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .know-more {
+            margin-top: 20px;
+        }
+
+        .know-more-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .know-more-btn:hover {
+            background: rgba(72, 149, 239, 0.15);
+        }
+
+        .know-more-btn i {
+            transition: transform 0.4s ease;
+        }
+
+        .know-more-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0 0 12px 12px;
+            margin-top: -10px;
+        }
+
+        .know-more-content.show {
+            max-height: 300px;
+            padding: 20px;
+        }
+
+        .more-info-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .more-info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 10px;
+        }
+
+        .more-info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .more-info-list i {
+            color: var(--accent);
+            margin-top: 4px;
         }
 
         .card-footer {
-            padding: 0 20px 20px;
+            padding: 0 25px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .website-link {
-            color: var(--accent);
+            background: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
             font-weight: 600;
             text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
+            font-size: 0.95rem;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            padding: 12px 25px;
+            border-radius: 12px;
             transition: var(--transition);
         }
 
         .website-link:hover {
-            color: var(--secondary);
-            transform: translateX(3px);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
         }
 
         .premium-badge {
-            background: linear-gradient(135deg, var(--premium), #ffbf00);
+            background: var(--premium);
             color: #856404;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 7px;
         }
 
         .vip-badge {
-            background: linear-gradient(135deg, var(--vip), #6a0dad);
+            background: var(--vip);
             color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 7px;
         }
 
         .lock-icon {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 25px;
+            right: 25px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
         .lock-icon:hover {
             transform: scale(1.1);
             background: var(--warning);
-        }
-
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            overflow: hidden;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 25px;
-        }
-
-        .modal-footer {
-            padding: 15px 25px;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        /* Browser Page */
-        .browser-container {
-            display: none;
-            height: calc(100vh - 70px);
-            flex-direction: column;
-        }
-
-        .browser-toolbar {
-            background: white;
-            padding: 15px 20px;
-            display: flex;
-            gap: 10px;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .browser-url {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: monospace;
-        }
-
-        .browser-frame {
-            flex-grow: 1;
-            border: none;
-            background: white;
-        }
-
-        /* Admin Panel */
-        .admin-panel {
-            display: none;
-            padding: 30px 0;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .admin-title {
-            font-size: 1.8rem;
-            color: var(--dark);
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .admin-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .admin-card-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            color: var(--primary);
-        }
-
-        .admin-list {
-            list-style: none;
-        }
-
-        .admin-list-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #f5f5f5;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .admin-list-item:last-child {
-            border-bottom: none;
-        }
-
-        .admin-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.85rem;
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-            color: white;
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, var(--danger), #d11450);
-            color: white;
-        }
-
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+            box-shadow: 0 0 20px rgba(255, 158, 0, 0.5);
         }
 
         /* Animations */
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% { box-shadow: 0 0 0 0 rgba(72, 149, 239, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(72, 149, 239, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(72, 149, 239, 0); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .fade-in {
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.6s ease forwards;
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1100px) {
+            .website-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
             .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
             
             .search-bar {
                 width: 100%;
                 max-width: 100%;
-                margin: 10px 0;
+                margin: 15px 0;
             }
             
             .auth-buttons {
@@ -568,48 +526,36 @@
             }
             
             .website-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            .admin-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-content {
-                width: 95%;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
             .website-grid {
                 grid-template-columns: 1fr;
             }
             
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
             }
             
             .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .categories {
+                gap: 8px;
+            }
+            
+            .category-btn {
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
-        }
-
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
-        }
-        
-        .mt-3 {
-            margin-top: 15px;
-        }
-        
-        .mb-3 {
-            margin-bottom: 15px;
-        }
-        
-        .hidden {
-            display: none;
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -618,22 +564,22 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-layer-group"></i>
+                <a href="#" class="logo" aria-label="WebLoft Home">
+                    <i class="fas fa-layer-group" aria-hidden="true"></i>
                     <span>WebLoft</span>
-                </div>
+                </a>
                 
                 <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search for websites...">
-                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for websites..." aria-label="Search websites">
+                    <i class="fas fa-search" aria-hidden="true"></i>
                 </div>
                 
                 <div class="auth-buttons">
-                    <button class="btn btn-outline" id="loginBtn">
-                        <i class="fas fa-sign-in-alt"></i> Login
+                    <button class="btn btn-outline" id="loginBtn" aria-label="Login">
+                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login
                     </button>
-                    <button class="btn btn-warning" id="premiumBtn">
-                        <i class="fas fa-crown"></i> Go Premium
+                    <button class="btn btn-primary" id="premiumBtn" aria-label="Go Premium">
+                        <i class="fas fa-crown" aria-hidden="true"></i> Go Premium
                     </button>
                 </div>
             </div>
@@ -643,16 +589,29 @@
     <!-- Category Filter Section -->
     <section class="category-section">
         <div class="container">
-            <h3 class="category-title">Categories</h3>
+            <div class="section-title">
+                <i class="fas fa-filter"></i>
+                <h2>Browse Categories</h2>
+            </div>
             <div class="categories" id="categoriesContainer">
-                <button class="category-btn active" data-category="all">All</button>
-                <button class="category-btn" data-category="AI Tools">AI Tools</button>
-                <button class="category-btn" data-category="Productivity">Productivity</button>
-                <button class="category-btn" data-category="Education">Education</button>
-                <button class="category-btn" data-category="Design">Design</button>
-                <button class="category-btn" data-category="Development">Development</button>
-                <button class="category-btn" data-category="Business">Business</button>
-                <button class="category-btn" data-category="Entertainment">Entertainment</button>
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-globe"></i> All
+                </button>
+                <button class="category-btn" data-category="AI Tools">
+                    <i class="fas fa-robot"></i> AI Tools
+                </button>
+                <button class="category-btn" data-category="Productivity">
+                    <i class="fas fa-tasks"></i> Productivity
+                </button>
+                <button class="category-btn" data-category="Design">
+                    <i class="fas fa-paint-brush"></i> Design
+                </button>
+                <button class="category-btn" data-category="Development">
+                    <i class="fas fa-code"></i> Development
+                </button>
+                <button class="category-btn" data-category="Education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </button>
             </div>
         </div>
     </section>
@@ -664,281 +623,142 @@
         </div>
     </main>
 
-    <!-- Browser View -->
-    <div class="browser-container" id="browserView">
-        <div class="browser-toolbar">
-            <button class="btn btn-outline" id="backBtn">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <input type="text" class="browser-url" id="browserUrl" readonly>
-            <button class="btn btn-outline" id="closeBrowserBtn">
-                <i class="fas fa-times"></i> Close
-            </button>
-        </div>
-        <iframe class="browser-frame" id="browserFrame"></iframe>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="container admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h2 class="admin-title">Admin Dashboard</h2>
-            <button class="btn btn-danger" id="logoutAdminBtn">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
-        </div>
-        
-        <div class="admin-grid">
-            <div class="admin-card">
-                <h3 class="admin-card-title">Pending Websites</h3>
-                <ul class="admin-list" id="pendingWebsites">
-                    <!-- Pending websites will be added here -->
-                </ul>
-            </div>
-            
-            <div class="admin-card">
-                <h3 class="admin-card-title">User Management</h3>
-                <ul class="admin-list" id="userList">
-                    <!-- Users will be added here -->
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Login/Signup -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalAuthTitle">Login to WebLoft</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="loginForm">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="loginEmail" class="form-control" placeholder="Your email">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="loginPassword" class="form-control" placeholder="Your password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" id="submitLogin">Login</button>
-                        <p class="text-center mt-3">
-                            Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
-                        </p>
-                    </div>
-                </div>
-                
-                <div id="signupForm" style="display: none;">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="signupName" class="form-control" placeholder="Your name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="signupEmail" class="form-control" placeholder="Your email">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="signupPassword" class="form-control" placeholder="Create password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" id="submitSignup">Create Account</button>
-                        <p class="text-center mt-3">
-                            Already have an account? <a href="#" id="switchToLogin">Login</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Ad Unlock -->
-    <div class="modal" id="adModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Unlock Premium Website</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Watch a short ad to unlock this premium website for 24 hours.</p>
-                <div class="ad-container" style="background: #f0f0f0; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
-                    <h4>Advertisement</h4>
-                    <p>Your ad would play here</p>
-                    <div id="adCountdown" style="font-size: 2rem; font-weight: bold; color: var(--primary);">15</div>
-                </div>
-                <p class="text-center"><small>By watching this ad, you support our platform</small></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" id="cancelAdBtn">Cancel</button>
-                <button class="btn btn-primary" id="watchAdBtn">Watch Ad</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Go Premium -->
-    <div class="modal" id="premiumModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Upgrade to Premium</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <i class="fas fa-crown" style="font-size: 3rem; color: var(--premium); margin-bottom: 15px;"></i>
-                    <h3>Premium Membership</h3>
-                </div>
-                
-                <ul style="list-style: none; margin-bottom: 25px;">
-                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
-                        Access all premium websites
-                    </li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
-                        Ad-free browsing experience
-                    </li>
-                    <li style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
-                        Early access to new features
-                    </li>
-                    <li style="padding: 8px 0;">
-                        <i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>
-                        Priority support
-                    </li>
-                </ul>
-                
-                <div style="display: flex; justify-content: center; margin: 20px 0;">
-                    <div style="background: #eef2ff; border-radius: 8px; padding: 15px; display: inline-block;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="font-size: 1.5rem; color: var(--premium);">
-                                <i class="fas fa-qrcode"></i>
-                            </div>
-                            <div>
-                                <h4>Scan to Upgrade</h4>
-                                <p style="font-size: 0.9rem;">Use your mobile wallet to scan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <p class="text-center">Scan QR code with your mobile wallet to complete payment</p>
-                <p class="text-center" style="font-size: 0.9rem; color: var(--gray);">Or contact support for manual upgrade</p>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Sample Data - In a real app, this would come from a backend API
+        // Categories with icons
+        const categories = [
+            { name: "AI Tools", icon: "robot" },
+            { name: "Productivity", icon: "tasks" },
+            { name: "Design", icon: "paint-brush" },
+            { name: "Development", icon: "code" },
+            { name: "Education", icon: "graduation-cap" },
+            { name: "Business", icon: "briefcase" },
+            { name: "Marketing", icon: "bullhorn" },
+            { name: "Finance", icon: "chart-line" },
+            { name: "Health & Fitness", icon: "heartbeat" }
+        ];
+
+        // Website data
         const websites = [
             {
                 id: 1,
-                title: "Google Docs",
-                description: "Create and edit documents online with Google Docs. Free web-based word processor.",
-                url: "https://docs.google.com",
-                category: "Productivity",
-                favicon: "file-alt",
-                isPremium: false
-            },
-            {
-                id: 2,
-                title: "Canva",
-                description: "Design anything. Publish anywhere. Use Canva's drag-and-drop tool and layouts.",
-                url: "https://canva.com",
-                category: "Design",
-                favicon: "paint-brush",
-                isPremium: false
-            },
-            {
-                id: 3,
-                title: "Grammarly",
-                description: "Free writing app to make your online writing clear and effective.",
-                url: "https://grammarly.com",
-                category: "Productivity",
-                favicon: "keyboard",
-                isPremium: true
-            },
-            {
-                id: 4,
-                title: "Khan Academy",
-                description: "Free online courses, lessons and practice for students and teachers.",
-                url: "https://khanacademy.org",
-                category: "Education",
-                favicon: "graduation-cap",
-                isPremium: false
-            },
-            {
-                id: 5,
-                title: "Midjourney",
-                description: "AI-powered image generation tool for creating stunning visuals from text prompts.",
-                url: "https://midjourney.com",
-                category: "AI Tools",
-                favicon: "robot",
-                isPremium: true,
-                isVIP: true
-            },
-            {
-                id: 6,
-                title: "Notion",
-                description: "All-in-one workspace for notes, tasks, wikis, and databases.",
-                url: "https://notion.so",
-                category: "Productivity",
-                favicon: "sticky-note",
-                isPremium: true
-            },
-            {
-                id: 7,
                 title: "Figma",
                 description: "Collaborative interface design tool for teams to create, test, and ship better designs.",
                 url: "https://figma.com",
                 category: "Design",
-                favicon: "vector-square",
-                isPremium: false
+                icon: "figma",
+                logo: "fas fa-pen-fancy",
+                isPremium: false,
+                moreInfo: [
+                    "Real-time collaboration features",
+                    "Design, prototype, and gather feedback in one place",
+                    "Integrates with Slack, Jira, and other tools"
+                ]
             },
             {
-                id: 8,
+                id: 2,
+                title: "Notion",
+                description: "All-in-one workspace for notes, tasks, wikis, and databases.",
+                url: "https://notion.so",
+                category: "Productivity",
+                icon: "notion",
+                logo: "fas fa-clipboard-list",
+                isPremium: true,
+                moreInfo: [
+                    "Combine docs, tasks, and databases in one place",
+                    "Powerful customization options",
+                    "Mobile apps for iOS and Android"
+                ]
+            },
+            {
+                id: 3,
                 title: "GitHub",
                 description: "Platform for version control and collaboration for software developers.",
                 url: "https://github.com",
                 category: "Development",
-                favicon: "code",
-                isPremium: false
+                icon: "github",
+                logo: "fas fa-code-branch",
+                isPremium: false,
+                moreInfo: [
+                    "Host and review code, manage projects",
+                    "World's largest open source community",
+                    "CI/CD pipelines and project management tools"
+                ]
             },
             {
-                id: 9,
+                id: 4,
+                title: "Midjourney",
+                description: "AI-powered image generation tool for creating stunning visuals from text prompts.",
+                url: "https://midjourney.com",
+                category: "AI Tools",
+                icon: "midjourney",
+                logo: "fas fa-robot",
+                isPremium: true,
+                isVIP: true,
+                moreInfo: [
+                    "Generate images from natural language descriptions",
+                    "Artistic styles ranging from realistic to abstract",
+                    "Community gallery for inspiration"
+                ]
+            },
+            {
+                id: 5,
+                title: "Canva",
+                description: "Design anything. Publish anywhere. Use Canva's drag-and-drop tool and layouts.",
+                url: "https://canva.com",
+                category: "Design",
+                icon: "canva",
+                logo: "fas fa-palette",
+                isPremium: false,
+                moreInfo: [
+                    "Thousands of professional templates",
+                    "Collaboration features for teams",
+                    "Video editing and animation capabilities"
+                ]
+            },
+            {
+                id: 6,
+                title: "Grammarly",
+                description: "Free writing app to make your online writing clear and effective.",
+                url: "https://grammarly.com",
+                category: "Productivity",
+                icon: "grammarly",
+                logo: "fas fa-keyboard",
+                isPremium: true,
+                moreInfo: [
+                    "Real-time grammar and spelling checks",
+                    "Tone detection and clarity suggestions",
+                    "Plagiarism detector in premium version"
+                ]
+            },
+            {
+                id: 7,
+                title: "Khan Academy",
+                description: "Free online courses, lessons and practice for students and teachers.",
+                url: "https://khanacademy.org",
+                category: "Education",
+                icon: "khan",
+                logo: "fas fa-book-open",
+                isPremium: false,
+                moreInfo: [
+                    "Personalized learning dashboard",
+                    "Covers math, science, computing, history and more",
+                    "Available in 40+ languages"
+                ]
+            },
+            {
+                id: 8,
                 title: "ChatGPT",
                 description: "Advanced AI language model that can understand and generate human-like text.",
                 url: "https://chat.openai.com",
                 category: "AI Tools",
-                favicon: "comment-alt",
-                isPremium: true
-            },
-            {
-                id: 10,
-                title: "Duolingo",
-                description: "Learn a language for free. Forever. Fun, effective, and 100% free language learning.",
-                url: "https://duolingo.com",
-                category: "Education",
-                favicon: "language",
-                isPremium: false
-            },
-            {
-                id: 11,
-                title: "Trello",
-                description: "Trello helps teams move work forward. Collaborate, manage projects, and reach new productivity peaks.",
-                url: "https://trello.com",
-                category: "Productivity",
-                favicon: "tasks",
-                isPremium: false
-            },
-            {
-                id: 12,
-                title: "Adobe Creative Cloud",
-                description: "Creative Cloud gives you the world's best creative apps and services so you can make anything you imagine.",
-                url: "https://adobe.com/creativecloud",
-                category: "Design",
-                favicon: "palette",
-                isPremium: true
+                icon: "chatgpt",
+                logo: "fas fa-comment-alt",
+                isPremium: true,
+                moreInfo: [
+                    "Natural conversation capabilities",
+                    "Code generation and debugging",
+                    "Content creation and summarization"
+                ]
             }
         ];
 
@@ -951,17 +771,8 @@
 
         // DOM Elements
         const websiteGrid = document.getElementById('websiteGrid');
-        const authModal = document.getElementById('authModal');
-        const adModal = document.getElementById('adModal');
-        const premiumModal = document.getElementById('premiumModal');
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const browserView = document.getElementById('browserView');
-        const browserFrame = document.getElementById('browserFrame');
-        const browserUrl = document.getElementById('browserUrl');
-        const adminPanel = document.getElementById('adminPanel');
-        const searchInput = document.getElementById('searchInput');
         const categoriesContainer = document.getElementById('categoriesContainer');
+        let currentCategory = "all";
 
         // Initialize the app
         function initApp() {
@@ -969,7 +780,7 @@
             setupEventListeners();
         }
 
-        // Render website cards based on user role
+        // Render website cards
         function renderWebsiteCards(websitesToRender) {
             websiteGrid.innerHTML = '';
             
@@ -979,7 +790,7 @@
                     return;
                 }
                 
-                const card = document.createElement('div');
+                const card = document.createElement('article');
                 card.className = 'website-card fade-in';
                 
                 let premiumBadge = '';
@@ -987,277 +798,141 @@
                 let lockIcon = '';
                 
                 if (website.isPremium && currentUser.role === 'free') {
-                    lockIcon = `<div class="lock-icon" data-id="${website.id}">
-                        <i class="fas fa-lock"></i>
+                    lockIcon = `<div class="lock-icon" data-id="${website.id}" aria-label="Unlock premium website">
+                        <i class="fas fa-lock" aria-hidden="true"></i>
                     </div>`;
                 }
                 
                 if (website.isPremium && currentUser.role !== 'free') {
-                    premiumBadge = '<div class="premium-badge"><i class="fas fa-crown"></i> Premium</div>';
+                    premiumBadge = '<div class="premium-badge"><i class="fas fa-crown" aria-hidden="true"></i> Premium</div>';
                 }
                 
                 if (website.isVIP) {
-                    vipBadge = '<div class="vip-badge"><i class="fas fa-star"></i> VIP</div>';
+                    vipBadge = '<div class="vip-badge"><i class="fas fa-star" aria-hidden="true"></i> VIP</div>';
                 }
                 
                 card.innerHTML = `
                     ${lockIcon}
-                    <div class="card-header">
-                        <div class="favicon">
-                            <i class="fas fa-${website.favicon}"></i>
+                    <div class="card-header" data-url="${website.url}">
+                        <div class="website-logo">
+                            <i class="${website.logo}" aria-hidden="true"></i>
                         </div>
                         <div class="website-info">
-                            <h4 class="website-title">${website.title}</h4>
+                            <h3 class="website-title">${website.title}</h3>
                             <span class="website-category">${website.category}</span>
                         </div>
                     </div>
                     <div class="card-body">
                         <p class="website-description">${website.description}</p>
+                        
+                        <div class="know-more">
+                            <button class="know-more-btn">
+                                <i class="fas fa-chevron-down"></i> 
+                                <span>Know more about this website</span>
+                            </button>
+                            <div class="know-more-content">
+                                <p>More details about ${website.title}:</p>
+                                <ul class="more-info-list">
+                                    ${website.moreInfo.map(info => `<li><i class="fas fa-check-circle"></i> ${info}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="website-link" data-id="${website.id}" data-url="${website.url}">
-                            <i class="fas fa-external-link-alt"></i> Visit Website
+                        <a href="${website.url}" target="_blank" class="website-link">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Visit Website
                         </a>
-                        ${premiumBadge}
-                        ${vipBadge}
+                        <div class="badges">
+                            ${premiumBadge}
+                            ${vipBadge}
+                        </div>
                     </div>
                 `;
                 
                 websiteGrid.appendChild(card);
             });
-        }
-
-        // Filter websites by search term
-        function filterWebsites(searchTerm) {
-            if (!searchTerm) return websites;
             
-            const term = searchTerm.toLowerCase();
-            return websites.filter(website => 
-                website.title.toLowerCase().includes(term) || 
-                website.description.toLowerCase().includes(term) ||
-                website.category.toLowerCase().includes(term)
-            );
-        }
-
-        // Filter websites by category
-        function filterByCategory(category) {
-            if (category === 'all') return websites;
-            return websites.filter(website => website.category === category);
+            // Setup "Know More" dropdowns
+            document.querySelectorAll('.know-more-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+                    
+                    content.classList.toggle('show');
+                    
+                    if (content.classList.contains('show')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+            
+            // Setup header click to open website
+            document.querySelectorAll('.card-header').forEach(header => {
+                header.addEventListener('click', (e) => {
+                    if (e.target.closest('.lock-icon')) return;
+                    window.open(header.dataset.url, '_blank');
+                });
+            });
         }
 
         // Setup all event listeners
         function setupEventListeners() {
-            // Auth buttons
-            document.getElementById('loginBtn').addEventListener('click', () => {
-                showModal(authModal);
-                document.getElementById('modalAuthTitle').textContent = 'Login to WebLoft';
-                loginForm.style.display = 'block';
-                signupForm.style.display = 'none';
-            });
-            
-            document.getElementById('premiumBtn').addEventListener('click', () => {
-                if (currentUser.isLoggedIn) {
-                    showModal(premiumModal);
-                } else {
-                    showModal(authModal);
-                }
-            });
-            
-            // Modal controls
-            document.querySelectorAll('.close-modal').forEach(button => {
-                button.addEventListener('click', () => {
-                    hideAllModals();
-                });
-            });
-            
-            // Auth form switching
-            document.getElementById('switchToSignup').addEventListener('click', (e) => {
-                e.preventDefault();
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-                document.getElementById('modalAuthTitle').textContent = 'Create an Account';
-            });
-            
-            document.getElementById('switchToLogin').addEventListener('click', (e) => {
-                e.preventDefault();
-                signupForm.style.display = 'none';
-                loginForm.style.display = 'block';
-                document.getElementById('modalAuthTitle').textContent = 'Login to WebLoft';
-            });
-            
-            // Website links
-            websiteGrid.addEventListener('click', (e) => {
-                const link = e.target.closest('.website-link');
-                if (link) {
-                    e.preventDefault();
-                    const websiteId = parseInt(link.dataset.id);
-                    const url = link.dataset.url;
-                    openWebsite(url, websiteId);
-                }
-                
-                const lockIcon = e.target.closest('.lock-icon');
-                if (lockIcon) {
-                    e.preventDefault();
-                    const websiteId = parseInt(lockIcon.dataset.id);
-                    if (currentUser.isLoggedIn && currentUser.role === 'free') {
-                        showModal(adModal);
-                    } else if (!currentUser.isLoggedIn) {
-                        showModal(authModal);
-                    }
-                }
-            });
-            
-            // Browser controls
-            document.getElementById('closeBrowserBtn').addEventListener('click', () => {
-                browserView.style.display = 'none';
-            });
-            
-            document.getElementById('backBtn').addEventListener('click', () => {
-                browserFrame.contentWindow.history.back();
-            });
-            
-            // Ad modal
-            document.getElementById('watchAdBtn').addEventListener('click', () => {
-                simulateAd();
-            });
-            
-            document.getElementById('cancelAdBtn').addEventListener('click', () => {
-                hideAllModals();
-            });
-            
-            // Admin logout
-            document.getElementById('logoutAdminBtn')?.addEventListener('click', () => {
-                currentUser = {
-                    isLoggedIn: false,
-                    role: "free",
-                    bookmarks: []
-                };
-                adminPanel.style.display = 'none';
-                renderWebsiteCards(websites);
-            });
-            
-            // Search functionality
-            searchInput.addEventListener('input', () => {
-                const searchTerm = searchInput.value.trim();
-                if (searchTerm.length > 0) {
-                    const filteredWebsites = filterWebsites(searchTerm);
-                    renderWebsiteCards(filteredWebsites);
-                } else {
-                    renderWebsiteCards(websites);
-                }
-            });
-            
             // Category filter
             categoriesContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('category-btn')) {
+                if (e.target.closest('.category-btn')) {
+                    const button = e.target.closest('.category-btn');
                     // Remove active class from all buttons
                     document.querySelectorAll('.category-btn').forEach(btn => {
                         btn.classList.remove('active');
                     });
                     
                     // Add active class to clicked button
-                    e.target.classList.add('active');
+                    button.classList.add('active');
                     
                     // Get category
-                    const category = e.target.dataset.category;
-                    const filteredWebsites = filterByCategory(category);
-                    renderWebsiteCards(filteredWebsites);
+                    const category = button.dataset.category;
+                    currentCategory = category;
+                    
+                    if (category === 'all') {
+                        renderWebsiteCards(websites);
+                    } else {
+                        const filteredWebsites = websites.filter(w => w.category === category);
+                        renderWebsiteCards(filteredWebsites);
+                    }
                 }
             });
             
-            // Login form submission
-            document.getElementById('submitLogin').addEventListener('click', () => {
-                const email = document.getElementById('loginEmail').value;
-                const password = document.getElementById('loginPassword').value;
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', () => {
+                const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+                let filteredWebsites;
                 
-                if (email && password) {
-                    // Simulate login
-                    currentUser = {
-                        isLoggedIn: true,
-                        role: "premium", // For demo purposes
-                        bookmarks: []
-                    };
-                    
-                    hideAllModals();
-                    alert('Login successful! You now have premium access.');
-                    renderWebsiteCards(websites);
+                if (currentCategory === "all") {
+                    filteredWebsites = websites;
                 } else {
-                    alert('Please enter both email and password');
+                    filteredWebsites = websites.filter(w => w.category === currentCategory);
                 }
-            });
-            
-            // Signup form submission
-            document.getElementById('submitSignup').addEventListener('click', () => {
-                const name = document.getElementById('signupName').value;
-                const email = document.getElementById('signupEmail').value;
-                const password = document.getElementById('signupPassword').value;
                 
-                if (name && email && password) {
-                    // Simulate signup
-                    currentUser = {
-                        isLoggedIn: true,
-                        role: "free", // New users start as free
-                        bookmarks: []
-                    };
-                    
-                    hideAllModals();
-                    alert('Account created successfully! Welcome to WebLoft.');
-                    renderWebsiteCards(websites);
-                } else {
-                    alert('Please fill all fields');
+                if (searchTerm.length > 0) {
+                    filteredWebsites = filteredWebsites.filter(website => 
+                        website.title.toLowerCase().includes(searchTerm) || 
+                        website.description.toLowerCase().includes(searchTerm) ||
+                        website.category.toLowerCase().includes(searchTerm)
+                    );
                 }
-            });
-        }
-
-        // Show modal
-        function showModal(modal) {
-            hideAllModals();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Hide all modals
-        function hideAllModals() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.classList.remove('active');
-            });
-            document.body.style.overflow = 'auto';
-        }
-
-        // Open website in browser view
-        function openWebsite(url, websiteId) {
-            const website = websites.find(w => w.id === websiteId);
-            
-            // Check if premium and user doesn't have access
-            if (website.isPremium && currentUser.role === 'free') {
-                showModal(adModal);
-                return;
-            }
-            
-            browserUrl.value = url;
-            browserFrame.src = url;
-            browserView.style.display = 'flex';
-        }
-
-        // Simulate watching an ad
-        function simulateAd() {
-            const countdownEl = document.getElementById('adCountdown');
-            let seconds = 15;
-            
-            countdownEl.textContent = seconds;
-            
-            const timer = setInterval(() => {
-                seconds--;
-                countdownEl.textContent = seconds;
                 
-                if (seconds <= 0) {
-                    clearInterval(timer);
-                    hideAllModals();
-                    alert('Website unlocked! You now have 24-hour access to this premium content.');
-                    
-                    // In a real app, this would unlock the website for the user
-                }
-            }, 1000);
+                renderWebsiteCards(filteredWebsites);
+            });
+            
+            // Premium button
+            document.getElementById('premiumBtn').addEventListener('click', () => {
+                alert("Premium features unlocked! You now have full access to all websites.");
+                currentUser.role = "premium";
+                renderWebsiteCards(currentCategory === "all" ? websites : 
+                    websites.filter(w => w.category === currentCategory));
+            });
         }
 
         // Initialize the app when the DOM is loaded
