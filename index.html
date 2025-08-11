@@ -3,940 +3,674 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebLoft - Modern Website Discovery Platform</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <title>Webloft - Secure Website Discovery with Built-in VPN</title>
     <style>
-        :root {
-            --primary: #4361ee;
-            --primary-dark: #3f37c9;
-            --accent: #4895ef;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #ff9e00;
-            --dark: #1e1e2c;
-            --darker: #121220;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --premium: linear-gradient(135deg, #ffd700, #ffbf00);
-            --vip: linear-gradient(135deg, #8a2be2, #6a0dad);
-            --card-shadow: 0 12px 30px rgba(0,0,0,0.12);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-
+        
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: var(--light);
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
+            padding-top: 80px;
+            background-color: #f5f5f5;
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
+        
         header {
-            background: rgba(16, 14, 41, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 18px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(72, 149, 239, 0.15);
-        }
-
-        .header-content {
+            left: 0;
+            width: 100%;
+            background-color: #2B5858;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
-
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.9rem;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
             color: white;
-            background: linear-gradient(to right, #4cc9f0, #4895ef);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
+            font-size: 24px;
+            font-weight: bold;
         }
-
-        .logo i {
-            background: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
+        
+        .login-btn {
+            background-color: transparent;
+            border: 1px solid white;
             color: white;
-            box-shadow: 0 0 20px rgba(67, 97, 238, 0.5);
-            animation: pulse 3s infinite;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            max-width: 600px;
-            margin: 0 25px;
-            position: relative;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 14px 25px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            transition: var(--transition);
-            border: 1px solid rgba(72, 149, 239, 0.2);
-        }
-
-        .search-bar input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.3);
-            border-color: var(--accent);
-        }
-
-        .search-bar input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .search-bar i {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent);
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
-
-        .btn-outline:hover {
-            background: rgba(72, 149, 239, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(72, 149, 239, 0.3);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 25px rgba(67, 97, 238, 0.5);
-        }
-
-        .btn-warning {
-            background: linear-gradient(135deg, var(--warning), #ff7b00);
-            color: white;
-        }
-
-        .btn-warning:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 25px rgba(255, 158, 0, 0.4);
-        }
-
-        /* Category Filter */
-        .category-section {
-            padding: 30px 0;
-        }
-
-        .section-title {
+        
+        .hero {
+            flex: 1;
             display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .section-title i {
-            background: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            box-shadow: 0 0 25px rgba(67, 97, 238, 0.4);
-        }
-
-        .categories {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 10px 24px;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.07);
-            color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(72, 149, 239, 0.2);
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
+            text-align: center;
+            padding: 40px 20px;
+            color: #333;
         }
-
-        .category-btn i {
-            font-size: 1.1rem;
-        }
-
-        .category-btn.active, .category-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
-            border-color: transparent;
-        }
-
-        /* Website Grid */
-        .website-grid {
-            padding: 30px 0 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 30px;
-        }
-
-        .website-card {
-            background: rgba(25, 22, 61, 0.7);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            position: relative;
-            border: 1px solid rgba(72, 149, 239, 0.15);
-            backdrop-filter: blur(10px);
-            transform: translateY(0);
-        }
-
-        .website-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(72, 149, 239, 0.4);
-        }
-
-        .card-header {
-            padding: 25px 25px 15px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .card-header:hover {
-            background: rgba(72, 149, 239, 0.05);
-        }
-
-        .website-logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #19163d, #25214e);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--accent);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
-
-        .card-header:hover .website-logo {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(72, 149, 239, 0.3);
-        }
-
-        .website-info {
-            flex-grow: 1;
-        }
-
-        .website-title {
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .card-header:hover .website-title {
-            color: var(--accent);
-        }
-
-        .website-category {
-            display: inline-block;
-            padding: 5px 14px;
-            border-radius: 30px;
-            background: rgba(72, 149, 239, 0.15);
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .card-body {
-            padding: 0 25px 25px;
-        }
-
-        .website-description {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
+        
+        .hero h1 {
+            font-size: 42px;
             margin-bottom: 20px;
+            color: #2B5858;
+            line-height: 1.3;
+            max-width: 800px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
-
-        .know-more {
-            margin-top: 20px;
-        }
-
-        .know-more-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--accent);
-            padding: 12px 20px;
-            border-radius: 12px;
+        
+        .cta-btn {
+            background-color: #2B5858;
+            color: white;
             border: none;
-            width: 100%;
-            text-align: left;
-            font-weight: 500;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-bottom: 60px;
         }
-
-        .know-more-btn:hover {
-            background: rgba(72, 149, 239, 0.15);
+        
+        .cta-btn:hover {
+            background-color: #1d4141;
+            transform: translateY(-2px);
         }
-
-        .know-more-btn i {
-            transition: transform 0.4s ease;
-        }
-
-        .know-more-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease;
-            padding: 0 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 0 0 12px 12px;
-            margin-top: -10px;
-        }
-
-        .know-more-content.show {
-            max-height: 300px;
-            padding: 20px;
-        }
-
-        .more-info-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .more-info-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        
+        .features {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background-color: #FFFFFF;
+            color: #000000;
+            border-radius: 8px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2B5858;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .plan-heading {
+            text-align: center;
+            font-size: 32px;
+            color: #2B5858;
+            margin: 0 auto 40px;
+            width: 100%;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background-color: #FFFFFF;
+            color: #000000;
+            border-radius: 8px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2B5858;
+        }
+        
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2B5858;
+        }
+        
+        .features-list {
+            flex: 1;
+            margin-bottom: 30px;
+        }
+        
+        .features-list p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .features-list p:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2B5858;
+        }
+        
+        .pricing-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .free-btn {
+            background-color: #FFFFFF;
+            color: #2B5858;
+            border: 1px solid #CBD6D6;
+        }
+        
+        .free-btn:active {
+            background-color: #2D5B5D;
+            color: white;
+            border-color: #2D5B5D;
+        }
+        
+        .premium-btn {
+            background-color: #EF9B0F;
+            color: white;
+            border: none;
+        }
+        
+        .premium-btn:hover {
+            background-color: #B8860B;
+        }
+        
+        .premium-btn:active {
+            background-color: #2D5B5D;
+        }
+        
+        .enterprise-btn {
+            background-color: #FFFFFF;
+            color: #2B5858;
+            border: 1px solid #E5E4E2;
+        }
+        
+        .enterprise-btn:active {
+            background-color: #2D5B5D;
+            color: white;
+            border-color: #2D5B5D;
+        }
+        
+        .cta-section {
+            background-color: #2B5858;
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .cta-section .secondary-btn {
+            background-color: #ffffff;
+            color: #2B5858;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .cta-section .secondary-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        .cta-section .secondary-btn:active {
+            background-color: #2D5B5D;
+            color: white;
+        }
+        
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+        
+        footer p {
+            margin: 5px 0;
         }
 
-        .more-info-list li:last-child {
-            border-bottom: none;
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
         }
 
-        .more-info-list i {
-            color: var(--accent);
-            margin-top: 4px;
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .card-footer {
-            padding: 0 25px 25px;
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
         }
 
-        .website-link {
-            background: var(--primary);
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 25px;
-            border-radius: 12px;
-            transition: var(--transition);
+        .modal-header h2 {
+            color: #2B5858;
+            font-size: 24px;
         }
 
-        .website-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
-        }
-
-        .badges {
-            display: flex;
-            gap: 10px;
-        }
-
-        .premium-badge {
-            background: var(--premium);
-            color: #856404;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .vip-badge {
-            background: var(--vip);
-            color: white;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .lock-icon {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            color: #666;
         }
 
-        .lock-icon:hover {
-            transform: scale(1.1);
-            background: var(--warning);
-            box-shadow: 0 0 20px rgba(255, 158, 0, 0.5);
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
         }
 
-        /* Animations */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(72, 149, 239, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(72, 149, 239, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(72, 149, 239, 0); }
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            position: relative;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .tab-btn.active {
+            color: #2B5858;
+            font-weight: bold;
         }
 
-        .fade-in {
-            animation: fadeIn 0.6s ease forwards;
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2B5858;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .website-grid {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            }
+        .tab-content {
+            display: none;
         }
 
-        @media (max-width: 900px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .search-bar {
-                width: 100%;
-                max-width: 100%;
-                margin: 15px 0;
-            }
-            
-            .auth-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .website-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
+        .tab-content.active {
+            display: block;
         }
 
-        @media (max-width: 600px) {
-            .website-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo {
-                font-size: 1.7rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .categories {
-                gap: 8px;
-            }
-            
-            .category-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #2B5858;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4141;
         }
     </style>
 </head>
 <body>
-    <!-- Header with Search Bar -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo" aria-label="WebLoft Home">
-                    <i class="fas fa-layer-group" aria-hidden="true"></i>
-                    <span>WebLoft</span>
-                </a>
-                
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search for websites..." aria-label="Search websites">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </div>
-                
-                <div class="auth-buttons">
-                    <button class="btn btn-outline" id="loginBtn" aria-label="Login">
-                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login
-                    </button>
-                    <button class="btn btn-primary" id="premiumBtn" aria-label="Go Premium">
-                        <i class="fas fa-crown" aria-hidden="true"></i> Go Premium
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div class="logo">Webloft</div>
+        <button class="login-btn" id="headerLoginBtn">Sign In / Login</button>
     </header>
-
-    <!-- Category Filter Section -->
-    <section class="category-section">
-        <div class="container">
-            <div class="section-title">
-                <i class="fas fa-filter"></i>
-                <h2>Browse Categories</h2>
-            </div>
-            <div class="categories" id="categoriesContainer">
-                <button class="category-btn active" data-category="all">
-                    <i class="fas fa-globe"></i> All
-                </button>
-                <button class="category-btn" data-category="AI Tools">
-                    <i class="fas fa-robot"></i> AI Tools
-                </button>
-                <button class="category-btn" data-category="Productivity">
-                    <i class="fas fa-tasks"></i> Productivity
-                </button>
-                <button class="category-btn" data-category="Design">
-                    <i class="fas fa-paint-brush"></i> Design
-                </button>
-                <button class="category-btn" data-category="Development">
-                    <i class="fas fa-code"></i> Development
-                </button>
-                <button class="category-btn" data-category="Education">
-                    <i class="fas fa-graduation-cap"></i> Education
-                </button>
-            </div>
-        </div>
+    
+    <section class="hero">
+        <h1>Secure Website Discovery with Built-in VPN</h1>
+        <p>Explore the web safely with WebLoft's curated website directory and integrated VPN protection. Access premium content and browse anonymously with enterprise-grade security.</p>
+        <button class="cta-btn" id="mainCtaBtn">Get Started</button>
     </section>
-
-    <!-- Website Grid -->
-    <main class="container">
-        <div class="website-grid" id="websiteGrid">
-            <!-- Website cards will be dynamically inserted here -->
+    
+    <div class="features">
+        <div class="feature-card">
+            <h3>Smart Website Discovery</h3>
+            <p>Find websites by category with intelligent search and real-time suggestions</p>
         </div>
-    </main>
+        <div class="feature-card">
+            <h3>Built-in VPN Protection</h3>
+            <p>Browse safely with integrated VPN across multiple global server locations</p>
+        </div>
+        <div class="feature-card">
+            <h3>Premium Content Access</h3>
+            <p>Unlock exclusive websites and advanced features with subscription tiers</p>
+        </div>
+    </div>
+    
+    <h2 class="plan-heading">Choose Your Plan</h2>
+    
+    <div class="pricing-cards">
+        <div class="pricing-card">
+            <h3>Free</h3>
+            <div class="price">$0/month</div>
+            <div class="features-list">
+                <p>Access to basic websites</p>
+                <p>Basic VPN protection</p>
+                <p>Website search & discovery</p>
+            </div>
+            <button class="pricing-btn free-btn" id="freePlanBtn">Get Started</button>
+        </div>
+        <div class="pricing-card">
+            <h3>Premium</h3>
+            <div class="price">$9.99/month</div>
+            <div class="features-list">
+                <p>Access to ALL premium websites</p>
+                <p>Global VPN servers</p>
+                <p>Advanced security features</p>
+                <p>Unlimited favorites</p>
+            </div>
+            <button class="pricing-btn premium-btn" id="premiumPlanBtn">Get Premium</button>
+        </div>
+        <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">$29.99/month</div>
+            <div class="features-list">
+                <p>Everything in Premium</p>
+                <p>Dedicated VPN servers</p>
+                <p>Custom security policies</p>
+                <p>Priority support</p>
+            </div>
+            <button class="pricing-btn enterprise-btn" id="enterprisePlanBtn">Contact Sales</button>
+        </div>
+    </div>
+    
+    <section class="cta-section">
+        <h2>Ready to Browse Securely?</h2>
+        <p>Join thousands of users who trust WebLoft for secure website discovery</p>
+        <button class="secondary-btn" id="bottomCtaBtn">Start Your Free Account</button>
+    </section>
+    
+    <footer>
+        <p><strong>Webloft</strong></p>
+        <p>Secure website discovery and VPN protection platform</p>
+    </footer>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Welcome to Webloft</h2>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="tab-container">
+                <button class="tab-btn active" id="loginTabBtn">Login</button>
+                <button class="tab-btn" id="signupTabBtn">Sign Up</button>
+            </div>
+            <div class="tab-content active" id="loginTab">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+            </div>
+            <div class="tab-content" id="signupTab">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Categories with icons
-        const categories = [
-            { name: "AI Tools", icon: "robot" },
-            { name: "Productivity", icon: "tasks" },
-            { name: "Design", icon: "paint-brush" },
-            { name: "Development", icon: "code" },
-            { name: "Education", icon: "graduation-cap" },
-            { name: "Business", icon: "briefcase" },
-            { name: "Marketing", icon: "bullhorn" },
-            { name: "Finance", icon: "chart-line" },
-            { name: "Health & Fitness", icon: "heartbeat" }
-        ];
-
-        // Website data
-        const websites = [
-            {
-                id: 1,
-                title: "Figma",
-                description: "Collaborative interface design tool for teams to create, test, and ship better designs.",
-                url: "https://figma.com",
-                category: "Design",
-                icon: "figma",
-                logo: "fas fa-pen-fancy",
-                isPremium: false,
-                moreInfo: [
-                    "Real-time collaboration features",
-                    "Design, prototype, and gather feedback in one place",
-                    "Integrates with Slack, Jira, and other tools"
-                ]
-            },
-            {
-                id: 2,
-                title: "Notion",
-                description: "All-in-one workspace for notes, tasks, wikis, and databases.",
-                url: "https://notion.so",
-                category: "Productivity",
-                icon: "notion",
-                logo: "fas fa-clipboard-list",
-                isPremium: true,
-                moreInfo: [
-                    "Combine docs, tasks, and databases in one place",
-                    "Powerful customization options",
-                    "Mobile apps for iOS and Android"
-                ]
-            },
-            {
-                id: 3,
-                title: "GitHub",
-                description: "Platform for version control and collaboration for software developers.",
-                url: "https://github.com",
-                category: "Development",
-                icon: "github",
-                logo: "fas fa-code-branch",
-                isPremium: false,
-                moreInfo: [
-                    "Host and review code, manage projects",
-                    "World's largest open source community",
-                    "CI/CD pipelines and project management tools"
-                ]
-            },
-            {
-                id: 4,
-                title: "Midjourney",
-                description: "AI-powered image generation tool for creating stunning visuals from text prompts.",
-                url: "https://midjourney.com",
-                category: "AI Tools",
-                icon: "midjourney",
-                logo: "fas fa-robot",
-                isPremium: true,
-                isVIP: true,
-                moreInfo: [
-                    "Generate images from natural language descriptions",
-                    "Artistic styles ranging from realistic to abstract",
-                    "Community gallery for inspiration"
-                ]
-            },
-            {
-                id: 5,
-                title: "Canva",
-                description: "Design anything. Publish anywhere. Use Canva's drag-and-drop tool and layouts.",
-                url: "https://canva.com",
-                category: "Design",
-                icon: "canva",
-                logo: "fas fa-palette",
-                isPremium: false,
-                moreInfo: [
-                    "Thousands of professional templates",
-                    "Collaboration features for teams",
-                    "Video editing and animation capabilities"
-                ]
-            },
-            {
-                id: 6,
-                title: "Grammarly",
-                description: "Free writing app to make your online writing clear and effective.",
-                url: "https://grammarly.com",
-                category: "Productivity",
-                icon: "grammarly",
-                logo: "fas fa-keyboard",
-                isPremium: true,
-                moreInfo: [
-                    "Real-time grammar and spelling checks",
-                    "Tone detection and clarity suggestions",
-                    "Plagiarism detector in premium version"
-                ]
-            },
-            {
-                id: 7,
-                title: "Khan Academy",
-                description: "Free online courses, lessons and practice for students and teachers.",
-                url: "https://khanacademy.org",
-                category: "Education",
-                icon: "khan",
-                logo: "fas fa-book-open",
-                isPremium: false,
-                moreInfo: [
-                    "Personalized learning dashboard",
-                    "Covers math, science, computing, history and more",
-                    "Available in 40+ languages"
-                ]
-            },
-            {
-                id: 8,
-                title: "ChatGPT",
-                description: "Advanced AI language model that can understand and generate human-like text.",
-                url: "https://chat.openai.com",
-                category: "AI Tools",
-                icon: "chatgpt",
-                logo: "fas fa-comment-alt",
-                isPremium: true,
-                moreInfo: [
-                    "Natural conversation capabilities",
-                    "Code generation and debugging",
-                    "Content creation and summarization"
-                ]
-            }
-        ];
-
-        // Current user state
-        let currentUser = {
-            isLoggedIn: false,
-            role: "free", // free, premium, vip, admin
-            bookmarks: []
-        };
+        // Check if user is logged in (in a real app, this would check cookies/localStorage)
+        let isLoggedIn = false;
 
         // DOM Elements
-        const websiteGrid = document.getElementById('websiteGrid');
-        const categoriesContainer = document.getElementById('categoriesContainer');
-        let currentCategory = "all";
+        const authModal = document.getElementById('authModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const loginTabBtn = document.getElementById('loginTabBtn');
+        const signupTabBtn = document.getElementById('signupTabBtn');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const headerLoginBtn = document.getElementById('headerLoginBtn');
+        const mainCtaBtn = document.getElementById('mainCtaBtn');
+        const freePlanBtn = document.getElementById('freePlanBtn');
+        const premiumPlanBtn = document.getElementById('premiumPlanBtn');
+        const enterprisePlanBtn = document.getElementById('enterprisePlanBtn');
+        const bottomCtaBtn = document.getElementById('bottomCtaBtn');
 
-        // Initialize the app
-        function initApp() {
-            renderWebsiteCards(websites);
-            setupEventListeners();
+        // Open modal function
+        function openAuthModal(activeTab = 'login') {
+            authModal.style.display = 'flex';
+            if (activeTab === 'login') {
+                loginTabBtn.classList.add('active');
+                signupTabBtn.classList.remove('active');
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            } else {
+                loginTabBtn.classList.remove('active');
+                signupTabBtn.classList.add('active');
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            }
         }
 
-        // Render website cards
-        function renderWebsiteCards(websitesToRender) {
-            websiteGrid.innerHTML = '';
-            
-            websitesToRender.forEach(website => {
-                // Hide VIP websites from non-VIP users
-                if (website.isVIP && currentUser.role !== 'vip' && currentUser.role !== 'admin') {
-                    return;
-                }
-                
-                const card = document.createElement('article');
-                card.className = 'website-card fade-in';
-                
-                let premiumBadge = '';
-                let vipBadge = '';
-                let lockIcon = '';
-                
-                if (website.isPremium && currentUser.role === 'free') {
-                    lockIcon = `<div class="lock-icon" data-id="${website.id}" aria-label="Unlock premium website">
-                        <i class="fas fa-lock" aria-hidden="true"></i>
-                    </div>`;
-                }
-                
-                if (website.isPremium && currentUser.role !== 'free') {
-                    premiumBadge = '<div class="premium-badge"><i class="fas fa-crown" aria-hidden="true"></i> Premium</div>';
-                }
-                
-                if (website.isVIP) {
-                    vipBadge = '<div class="vip-badge"><i class="fas fa-star" aria-hidden="true"></i> VIP</div>';
-                }
-                
-                card.innerHTML = `
-                    ${lockIcon}
-                    <div class="card-header" data-url="${website.url}">
-                        <div class="website-logo">
-                            <i class="${website.logo}" aria-hidden="true"></i>
-                        </div>
-                        <div class="website-info">
-                            <h3 class="website-title">${website.title}</h3>
-                            <span class="website-category">${website.category}</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="website-description">${website.description}</p>
-                        
-                        <div class="know-more">
-                            <button class="know-more-btn">
-                                <i class="fas fa-chevron-down"></i> 
-                                <span>Know more about this website</span>
-                            </button>
-                            <div class="know-more-content">
-                                <p>More details about ${website.title}:</p>
-                                <ul class="more-info-list">
-                                    ${website.moreInfo.map(info => `<li><i class="fas fa-check-circle"></i> ${info}</li>`).join('')}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="${website.url}" target="_blank" class="website-link">
-                            <i class="fas fa-external-link-alt" aria-hidden="true"></i> Visit Website
-                        </a>
-                        <div class="badges">
-                            ${premiumBadge}
-                            ${vipBadge}
-                        </div>
-                    </div>
-                `;
-                
-                websiteGrid.appendChild(card);
-            });
-            
-            // Setup "Know More" dropdowns
-            document.querySelectorAll('.know-more-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const icon = button.querySelector('i');
-                    
-                    content.classList.toggle('show');
-                    
-                    if (content.classList.contains('show')) {
-                        icon.style.transform = 'rotate(180deg)';
-                    } else {
-                        icon.style.transform = 'rotate(0deg)';
-                    }
-                });
-            });
-            
-            // Setup header click to open website
-            document.querySelectorAll('.card-header').forEach(header => {
-                header.addEventListener('click', (e) => {
-                    if (e.target.closest('.lock-icon')) return;
-                    window.open(header.dataset.url, '_blank');
-                });
-            });
+        // Close modal function
+        function closeAuthModal() {
+            authModal.style.display = 'none';
         }
 
-        // Setup all event listeners
-        function setupEventListeners() {
-            // Category filter
-            categoriesContainer.addEventListener('click', (e) => {
-                if (e.target.closest('.category-btn')) {
-                    const button = e.target.closest('.category-btn');
-                    // Remove active class from all buttons
-                    document.querySelectorAll('.category-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    // Get category
-                    const category = button.dataset.category;
-                    currentCategory = category;
-                    
-                    if (category === 'all') {
-                        renderWebsiteCards(websites);
-                    } else {
-                        const filteredWebsites = websites.filter(w => w.category === category);
-                        renderWebsiteCards(filteredWebsites);
-                    }
-                }
-            });
-            
-            // Search functionality
-            document.getElementById('searchInput').addEventListener('input', () => {
-                const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
-                let filteredWebsites;
-                
-                if (currentCategory === "all") {
-                    filteredWebsites = websites;
-                } else {
-                    filteredWebsites = websites.filter(w => w.category === currentCategory);
-                }
-                
-                if (searchTerm.length > 0) {
-                    filteredWebsites = filteredWebsites.filter(website => 
-                        website.title.toLowerCase().includes(searchTerm) || 
-                        website.description.toLowerCase().includes(searchTerm) ||
-                        website.category.toLowerCase().includes(searchTerm)
-                    );
-                }
-                
-                renderWebsiteCards(filteredWebsites);
-            });
-            
-            // Premium button
-            document.getElementById('premiumBtn').addEventListener('click', () => {
-                alert("Premium features unlocked! You now have full access to all websites.");
-                currentUser.role = "premium";
-                renderWebsiteCards(currentCategory === "all" ? websites : 
-                    websites.filter(w => w.category === currentCategory));
-            });
+        // Event Listeners
+        headerLoginBtn.addEventListener('click', () => openAuthModal());
+        closeModalBtn.addEventListener('click', closeAuthModal);
+
+        // Handle Get Started buttons
+        function handleGetStarted() {
+            if (isLoggedIn) {
+                // Redirect to home page
+                window.location.href = '/home.html';
+            } else {
+                // Show login/signup modal
+                openAuthModal();
+            }
         }
 
-        // Initialize the app when the DOM is loaded
-        document.addEventListener('DOMContentLoaded', initApp);
+        mainCtaBtn.addEventListener('click', handleGetStarted);
+        freePlanBtn.addEventListener('click', handleGetStarted);
+        bottomCtaBtn.addEventListener('click', handleGetStarted);
+
+        // Premium and Enterprise buttons
+        premiumPlanBtn.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // Redirect to premium subscription page
+                window.location.href = '/subscribe.html?plan=premium';
+            } else {
+                openAuthModal('signup');
+            }
+        });
+
+        enterprisePlanBtn.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // Redirect to contact sales page
+                window.location.href = '/contact-sales.html';
+            } else {
+                openAuthModal('signup');
+            }
+        });
+
+        // Tab switching
+        loginTabBtn.addEventListener('click', () => {
+            loginTabBtn.classList.add('active');
+            signupTabBtn.classList.remove('active');
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+        });
+
+        signupTabBtn.addEventListener('click', () => {
+            loginTabBtn.classList.remove('active');
+            signupTabBtn.classList.add('active');
+            loginTab.classList.remove('active');
+            signupTab.classList.add('active');
+        });
+
+        // Form submissions
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, you would validate and send to server
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simulate successful login
+            isLoggedIn = true;
+            alert(`Welcome back! (Simulated login for ${email})`);
+            closeAuthModal();
+            // Redirect to home page
+            window.location.href = '/home.html';
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, you would validate and send to server
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            // Simulate successful signup
+            isLoggedIn = true;
+            alert(`Welcome to Webloft, ${name}! (Simulated signup)`);
+            closeAuthModal();
+            // Redirect to home page
+            window.location.href = '/home.html';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                closeAuthModal();
+            }
+        });
     </script>
 </body>
 </html>
