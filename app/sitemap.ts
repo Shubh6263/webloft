@@ -1,24 +1,26 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://webloft.in";
 
   return [
     {
       url: `${baseUrl}/`,
-      lastModified: new Date(),
+      lastModified: "2024-01-01",
     },
     {
       url: `${baseUrl}/ai-tools`,
-      lastModified: new Date(),
+      lastModified: "2024-01-01",
     },
     {
       url: `${baseUrl}/ai-tools/writing-tools`,
-      lastModified: new Date(),
+      lastModified: "2024-01-01",
     },
     {
       url: `${baseUrl}/ai-tools/writing-tools/chatgpt`,
-      lastModified: new Date(),
+      lastModified: "2024-01-01",
     },
   ];
 }
